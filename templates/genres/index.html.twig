@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"><h3>{{ title }}</h3></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button id="btnAddGenreFrm" name="btnAddGenreFrm" 
+                        class="btn btn-primary" 
+                        onclick="window.location.href='/genres/add-genre'">
+                    Добавить
+                </button>
+                <button id="btnBooksFrm" name="btnBooksFrm" 
+                        class="btn btn-primary" 
+                        onclick="window.location.href='/books'">
+                    Вернуться к книгам
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Название</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for genre in genres %}
+                        <tr>
+                            <td>{{ genre.name }}</td>
+                            <td>
+                                <button id="btnEditGenre" name="btnEditGenre"
+                                    class="btn btn-secondary" 
+                                    onclick="window.location.href='/genres/edit-genre?id={{ genre.id }}&name={{ genre.name }}'">
+                                    Изменить
+                                </button>
+                                <button id="btnDelGenre" name="btnDelGenre"
+                                        class="btn btn-secondary"
+                                        onclick="window.location.href='/genres/deleteGenre?id={{ genre.id }}'">
+                                    Удалить
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+{% endblock %}
